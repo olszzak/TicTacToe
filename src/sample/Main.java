@@ -13,7 +13,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.*;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
@@ -35,7 +37,6 @@ public class Main extends Application {
     private Tile[][] board = new Tile[3][3];
     private List<Combo> combos = new ArrayList<>();
     private Pane root = new Pane();
-    private Rectangle border;
 
     private Parent createContent(){
         root.setPrefSize(600,600);
@@ -102,10 +103,7 @@ public class Main extends Application {
         line.setEndX(combo.tiles[0].getCenterX());
         line.setEndY(combo.tiles[0].getCenterY());
 
-        for (int i=0; i<3; i++) {
-            combo.tiles[i].setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-        }
-        root.getChildren().addAll(line);
+        root.getChildren().add(line);
 
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
